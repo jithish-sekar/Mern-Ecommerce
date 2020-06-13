@@ -1,12 +1,25 @@
-import React, { Component } from "react";
-import data from "../data";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-class HomeScreen extends Component {
-  render() {
-    return (
-      <div>
+import axios from 'axios';
+function HomeScreen (props){
+
+  const [products, setProduct] = useState([]);
+
+  useEffect(() => {
+    const fetchData= async()=>{
+      const {data} =await axios.get("http://localhost:5000/api/products")
+      setProduct(data);
+    }
+    fetchData()
+    return () => {
+      
+    }
+  }, [])
+
+    return(
+      
         <ul className='products'>
-          {data.products.map((product) => (
+          {products.map(product => 
             <li className='product'>
               <Link to={"/product/" + product.id}>
                 <img
@@ -24,10 +37,10 @@ class HomeScreen extends Component {
                 {product.rating} stars {product.numReviews}
               </div>
             </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
-}
+          )}
+        </ul>)
+      
+    
+          }
+
 export default HomeScreen;
