@@ -37,7 +37,7 @@ function ProductScreen(props) {
             <i class='fa fa-check-circle' />
           </li>
           <li>
-            Quantity: 
+            Quantity:
             <select className="selectQuantity">
               <option>1</option>
               <option>2</option>
